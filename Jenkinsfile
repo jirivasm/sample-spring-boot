@@ -36,7 +36,7 @@ pipeline {
                 withCredentials([string(credentialsId: 'DockerHubSecret', variable: 'Password')]) {
                     sh 'sudo docker login -u jirivasm -p ${Password} '
                 }
-                    sh "sudo docker push jirivasm/sampleApp:1.0"sh 'echo docker push!'
+                    sh "sudo docker push jirivasm/sampleApp:1.0"
                 }
             }
         stage('Deploy App') {
