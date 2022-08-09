@@ -1,10 +1,10 @@
 pipeline {
     agent any
-       environment {
+   //    environment {
     //     ENV_DOCKER = credentials('DockerHubSecret')
     //     DOCKERIMAGE = "dummy/dummy"
     //     EKS_CLUSTER_NAME = "demo-cluster"
-    }
+    //}
     stages {
         stage('build') {
             agent {
