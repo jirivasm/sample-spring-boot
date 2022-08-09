@@ -25,7 +25,7 @@ pipeline {
             steps {
                 sh 'echo docker build'
                 sh 'docker version'
-                sh 'docker build -t sampleapp:1.0'
+                sh 'docker build  . -t sampleapp:1.0'
 
                 
             }
