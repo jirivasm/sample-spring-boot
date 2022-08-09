@@ -1,7 +1,7 @@
 pipeline {
     agent any
        environment {
-             ENV_DOCKER = credentials('DockerHubSecret')
+    //     ENV_DOCKER = credentials('DockerHubSecret')
     //     DOCKERIMAGE = "dummy/dummy"
     //     EKS_CLUSTER_NAME = "demo-cluster"
     }
@@ -25,7 +25,6 @@ pipeline {
             steps {
                 sh 'echo docker build'
                 sh 'docker version'
-                sh './gradlew build && java -jar build/libs/gs-spring-boot-docker-0.1.0.jar'
                 sh 'docker build -t sampleApp:1.0'
 
                 
