@@ -25,6 +25,7 @@ pipeline {
             steps {
                 sh 'echo docker build'
                 sh 'docker version'
+                sh './gradlew build && java -jar build/libs/gs-spring-boot-docker-0.1.0.jar'
                 sh 'docker build  . -t sampleapp:1.0'
 
                 
