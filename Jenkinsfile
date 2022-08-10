@@ -23,10 +23,9 @@ pipeline {
         }
         stage('docker build') {
             steps {
-                sh 'echo docker build'
-                sh 'docker version'
-                sh './gradlew build && java -jar build/libs/gs-spring-boot-docker-0.1.0.jar'
-                sh "docker build --build-arg JAR_FILE=build/libs/*.jar -t springio/gs-spring-boot-docker ."
+                sh 'gradlew build && java -jar build/libs/gs-spring-boot-docker-0.1.0.jar'
+                sh 'docker build -t spring-boot-docker .'
+                sh 'docker images'
             }
         }
         stage('docker push') {
