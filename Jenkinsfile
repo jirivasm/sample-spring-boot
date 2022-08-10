@@ -23,7 +23,7 @@ pipeline {
         }
         stage('docker build') {
             steps {
-                sh './gradlew build && java -jar build/libs/gs-spring-boot-docker-0.1.0.jar'
+                sh  './gradlew build && java -jar build/libs/gs-spring-boot-docker-0.1.0.jar'
                 sh 'docker build -t spring-boot-docker .'
                 sh 'docker images'
             }
