@@ -1,5 +1,5 @@
 pipeline {
-    //agent any
+    agent any
    //    environment {
     //     ENV_DOCKER = credentials('DockerHubSecret')
     //     DOCKERIMAGE = "dummy/dummy"
