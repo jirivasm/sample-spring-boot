@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    //agent any
    //    environment {
     //     ENV_DOCKER = credentials('DockerHubSecret')
     //     DOCKERIMAGE = "dummy/dummy"
@@ -22,6 +22,7 @@ pipeline {
                     sh 'gradle sonarqube'
                 }
             }
+        }
         }
         stage('docker build') {
             steps {
