@@ -24,6 +24,7 @@ pipeline {
         }
         stage('docker build') {
             steps {
+                sh'echo docker build'
                 // sh  './gradlew build && java -jar build/libs/gs-spring-boot-docker-0.1.0.jar'
                 // sh 'docker build -t spring-boot-docker .'
                 // sh 'docker images'
@@ -31,6 +32,7 @@ pipeline {
         }
         stage('docker push') {
             steps {
+                sh 'docker push'
                 // withCredentials([string(credentialsId: 'DockerHubSecret', variable: 'Password')]) {
                 //     sh 'sudo docker login -u jirivasm -p ${Password} '
                 // }
