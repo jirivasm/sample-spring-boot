@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    agent reusenode = true
+    
    //    environment {
     //     ENV_DOCKER = credentials('DockerHubSecret')
     //     DOCKERIMAGE = "dummy/dummy"
