@@ -15,25 +15,27 @@ pipeline {
             }
         }
         stage('sonarqube') {
-        //  agent {
-        //      docker { image 'sonarqube:8.9.9-community' } }
+         agent any {
             steps {
-                sh 'echo scanning!'
+                sh 'ls --all'
+                withSonarQubeEnv(installationName: 'sonarqube'){
+                    sh 'gradle sonarqube'
+                }
             }
         }
         stage('docker build') {
             steps {
-                sh  './gradlew build && java -jar build/libs/gs-spring-boot-docker-0.1.0.jar'
-                sh 'docker build -t spring-boot-docker .'
-                sh 'docker images'
+                // sh  './gradlew build && java -jar build/libs/gs-spring-boot-docker-0.1.0.jar'
+                // sh 'docker build -t spring-boot-docker .'
+                // sh 'docker images'
             }
         }
         stage('docker push') {
             steps {
-                withCredentials([string(credentialsId: 'DockerHubSecret', variable: 'Password')]) {
-                    sh 'sudo docker login -u jirivasm -p ${Password} '
-                }
-                    sh "sudo docker push jirivasm/sampleApp:1.0"
+                // withCredentials([string(credentialsId: 'DockerHubSecret', variable: 'Password')]) {
+                //     sh 'sudo docker login -u jirivasm -p ${Password} '
+                // }
+                //     sh "sudo docker push jirivasm/sampleApp:1.0"
                 }
             }
         stage('Deploy App') {
