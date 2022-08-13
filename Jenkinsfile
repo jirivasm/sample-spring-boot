@@ -15,14 +15,12 @@ pipeline {
             }
         }
         stage('sonarqube') {
-         agent any {
             steps {
                 sh 'ls --all'
                 withSonarQubeEnv(installationName: 'sonarqube'){
                     sh 'gradle sonarqube'
                 }
             }
-        }
         }
         stage('docker build') {
             steps {
