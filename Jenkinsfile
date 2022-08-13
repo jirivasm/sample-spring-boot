@@ -2,7 +2,7 @@ pipeline {
     agent none
         environment {
         ENV_DOCKER = credentials('dockerhub')
-        DOCKERIMAGE = "dummy/dummy"
+        DOCKERIMAGE = "springboot-demo"
         EKS_CLUSTER_NAME = "demo-cluster"
     }
     stages {
@@ -14,16 +14,17 @@ pipeline {
                 sh 'chmod +x gradlew && ./gradlew build jacocoTestReport'
             }
         }
-        stage('sonarqube') {
-        agent {
-            docker { image '<some sonarcli image>' } }
-            steps {
-                sh 'echo scanning!'
-            }
-        }
+        // stage('sonarqube') {
+        // agent {
+        //     docker { image '<some sonarcli image>' } }
+        //     steps {
+        //         sh 'echo scanning!'
+        //     }
+        // }
         stage('docker build') {
             steps {
-                sh 'echo docker build'
+                sh 'ls -all'
+                sh 'docker build -t $DOCKERIMAGE:$BUILD_NUMBER .'
             }
         }
         stage('docker push') {
