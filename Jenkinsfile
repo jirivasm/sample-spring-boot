@@ -1,5 +1,6 @@
 pipeline {
     agent any
+    
    //    environment {
     //     ENV_DOCKER = credentials('DockerHubSecret')
     //     DOCKERIMAGE = "dummy/dummy"
@@ -9,14 +10,17 @@ pipeline {
         stage('build') {
             agent {
                 docker { image 'openjdk:11-jdk' }
+                agent reusenode = true
             }
             steps {
                 sh 'chmod +x gradlew && ./gradlew build jacocoTestReport'
+                sh './gradlew build && java -jar build/libs/gs-spring-boot-docker-0.1.0.jar'
+                sh 'ls --all'
             }
         }
         stage('sonarqube') {
             steps {
-                sh 'ls --all'
+                
                 withSonarQubeEnv(installationName: 'sonarqube'){
                     sh 'gradle sonarqube'
                 }
