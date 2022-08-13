@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    
+    agent reusenode = true
    //    environment {
     //     ENV_DOCKER = credentials('DockerHubSecret')
     //     DOCKERIMAGE = "dummy/dummy"
@@ -10,7 +10,7 @@ pipeline {
         stage('build') {
             agent {
                 docker { image 'openjdk:11-jdk' }
-                agent reusenode = true
+                
             }
             steps {
                 sh 'chmod +x gradlew && ./gradlew build jacocoTestReport'
