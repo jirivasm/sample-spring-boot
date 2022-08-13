@@ -1,7 +1,7 @@
 pipeline {
     agent none
         environment {
-        ENV_DOCKER = credentials('dockerhub')
+        //ENV_DOCKER = credentials('dockerhub')
         DOCKERIMAGE = "springboot-demo"
         EKS_CLUSTER_NAME = "demo-cluster"
     }
